@@ -1,11 +1,11 @@
 # day-to-night-images
-The Mission:
+**The Mission:**
 Our goal is to create a machine learning model that when given an image which was taken in daylight conditions, and simulates a similar image, as if it was taken during the night, using flash, where the flash is (reasonably) focusing on the main object in the picture.
 Note this is not trivial - we can’t simply make the picture darker or do some similar operation. as it would simply look darker and not like it was taken at night.
 Our model is focusing on images which consist of one single main object. Images in which there are more than one main object, aren’t guaranteed to be simulated well in night conditions using our model. However, this may be a great future work on our model.
 
 
-Related Work:
+**Related Work:**
 We have found two websites that are based on the same goal,of converting a daylight image to a nighttime one:
 https://funny.pho.to/day-to-night-effect/
 https://photofunia.com/effects/dark_night
@@ -15,7 +15,7 @@ We have not found any article about our mission, but there has been a lot of wor
 
 
 
-Our Solution:
+**Our Solution:**
 We used the dataset from https://www.kaggle.com/biancaferreira/african-wildlife and also some photos of our own (see below).
 Our solution is built based on the structure given in https://arxiv.org/abs/1508.06576. From now on we will refer to this article as “the base style transfer”.
 Our solution consists of applying style transfer, when the style image is built using object detection and distance mapping, as we discuss below, and tries to represent a dark background with a flash aimed at the main object. While the style transfer tries to minimize the difference between the features (denoted by a pretrained model as explained below) of the original image and the one we create, it also tries to minimize the difference between the customized style image and the image we create. Note that the style loss uses the style image as is and not features of it, as opposed to many usages of style transfer. We do that because the location of elements in the style image matters.
